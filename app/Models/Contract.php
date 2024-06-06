@@ -16,15 +16,15 @@ class Contract extends Model
     ];
 
 
-    public function players(): BelongsToMany
+    public function players()
     {
-        return $this->morphedByMany(Player::class, 'contractable');
+        return $this->hasMany(Player::class);
     }
 
 
-    public function teams(): MorphToMany
+    public function teams()
     {
-        return $this->morphedByMany(Team::class, 'contractable');
+        return $this->hasMany(Team::class);
     }
 }
 
