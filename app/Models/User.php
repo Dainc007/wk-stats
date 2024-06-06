@@ -46,6 +46,11 @@ class User extends Authenticatable
         ];
     }
 
+    public function player()
+    {
+        return $this->hasOne(Player::class);
+    }
+
     /**
      * By default all users have access to Panel
      *
