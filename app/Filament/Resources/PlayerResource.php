@@ -5,6 +5,8 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\PlayerResource\Pages;
 use App\Filament\Resources\PlayerResource\RelationManagers;
 use App\Models\Player;
+use Filament\Forms\Components\CheckboxList;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -21,7 +23,9 @@ class PlayerResource extends Resource
     {
         return $form
             ->schema([
-                Tables\Columns\TextColumn::make('name'),
+                TextInput::make('name'),
+                CheckboxList::make('teams')->relationship('teams', 'name')->columnSpanFull()->columns(3)
+
             ]);
     }
 
@@ -30,6 +34,7 @@ class PlayerResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('teams_count')->counts('teams'),
             ])
             ->filters([
                 //

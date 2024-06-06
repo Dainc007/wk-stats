@@ -22,8 +22,10 @@ class TeamResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Textarea::make('name'),
-                Forms\Components\Select::make('players.name')
+                Forms\Components\TextInput::make('name')->required(),
+                Forms\Components\Actions::make([
+                    Forms\Components\Actions\Action::make('Import Team From Vpg')->url('/dashboard')
+                ]),
             ]);
     }
 
@@ -32,7 +34,7 @@ class TeamResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('players_count')->counts('contracts'),
+                Tables\Columns\TextColumn::make('players_count')->counts('players'),
             ])
             ->filters([
                 //
