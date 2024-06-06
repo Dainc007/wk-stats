@@ -6,18 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Player extends Model
+class Team extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name', 'user_id'
+        'name'
     ];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+
 
     public function contracts(): BelongsToMany
     {
